@@ -1,0 +1,40 @@
+SELLER GUIDE (for you, not for the customer)
+============================================
+
+1. HOW EACH ORDER WORKS (about 10-15 minutes)
+   a. Customer sends: partner's name, their name, start date, secret code,
+      3-6 memories for the timeline, a few lines for the letter, photos, optional song file.
+   b. Copy this folder, open config.js, fill in their details. Pick a theme.
+   c. Test it by double-clicking index.html.
+   d. Upload the folder to your host. Send the customer the link (and the code separately).
+
+2. TIME-SAVERS
+   - Keep one "master" folder and copy it for every order.
+   - Ask customers to fill a Google Form with exactly the fields above.
+   - If the customer writes little, offer to write the letter for an extra fee.
+
+3. PACKAGES (starting ideas, adjust to your market)
+   Basic    : name, code, counter, default letter, 1 theme
+   Standard : custom letter + timeline + up to 6 photos + their own song
+   Premium  : everything + custom extra sections + your own domain name + 1 free edit
+   Add-ons  : rush delivery, extra edits, writing the letter for them, QR-code card
+
+3b. THE INTERACTIVE EXTRAS (great selling points)
+   - Scratch-off card: ideal for a coupon, a date idea or a secret message.
+   - Hold to feel my heartbeat: the most emotional moment; works best with sound on.
+   - Tilt your phone: fun to film, because the petals visibly slide around.
+   Tip: tell customers iPhone users must tap "Allow" for the tilt feature and that vibration only works on Android.
+
+4. WHAT TO SHOW IN YOUR POSTS
+   - A 15-30 second phone screen recording: gate -> counter -> hero -> scratching the card -> holding the heart -> "No" button running away.
+   - A demo link with a made-up name so people can try it themselves.
+   - Real reactions (with permission) from your first customers.
+
+5. SEASONS THAT SELL
+   Valentine's Day, anniversaries, Mother's Day, birthdays, Eid and other holidays, weddings.
+
+6. BE CLEAR WITH CUSTOMERS
+   - The code is a fun gate, not real security: tell them not to put private data on the page.
+   - Music: they provide a song they have the right to use, or use the built-in melody.
+   - Say how long you keep their photos and messages, and delete them when you promised to.
+   - Check your hosting provider's terms: some free plans do not allow commercial use.

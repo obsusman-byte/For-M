@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#2a0a18" />
+  <title>A Letter For You 💌</title>
+  <meta name="description" content="Someone left you a letter. Open it with the secret code." />
+  <meta property="og:title" content="A letter is waiting for you 💌" />
+  <meta property="og:description" content="Open it with the secret code." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💌</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Pinyon+Script&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-mood="dusk" data-theme="wine">
+
+  <div class="sky" aria-hidden="true">
+    <div class="sky-layer sky-dusk"></div>
+    <div class="sky-layer sky-night"></div>
+    <div class="sky-layer sky-glow"></div>
+    <div class="aura aura-a"></div>
+    <div class="aura aura-b"></div>
+    <canvas id="sky-canvas"></canvas>
+  </div>
+  <div class="hearts" id="hearts" aria-hidden="true"></div>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <div class="flash" id="flash" aria-hidden="true"></div>
+  <div class="progress" id="progress" aria-hidden="true"><i></i></div>
+
+  <button class="sound" id="sound-btn" type="button" aria-pressed="true" aria-label="Sound is on. Tap to mute.">
+    <svg class="ico-on" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+    <svg class="ico-off" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m16 9 5 6"/><path d="m21 9-5 6"/></svg>
+  </button>
+
+  <main class="stage" id="stage">
+    <!-- 1. SEALED LETTER + CODE -->
+    <section class="card screen is-active" id="screen-code" aria-labelledby="code-title">
+      <div class="envelope" id="envelope" aria-hidden="true"></div>
+      <h1 id="code-title">A letter is waiting for you</h1>
+      <p class="sub">Enter our secret code to break the seal.</p>
+      <div class="code" id="code-field" role="group" aria-label="Secret code"></div>
+      <button class="btn" id="code-btn" type="button">Open the letter</button>
+      <p class="error" id="code-error" role="alert" aria-live="assertive"></p>
+      <button class="link" id="hint-btn" type="button" hidden>Need a hint?</button>
+    </section>
+
+    <!-- 2. TIME TOGETHER -->
+    <section class="card screen" id="screen-time" aria-labelledby="time-title">
+      <button class="heart-btn" id="heart-btn" type="button" aria-label="Tap the heart">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="hbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9bb0"/><stop offset="1" stop-color="#c23a5c"/></linearGradient></defs><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="url(#hbg)"/></svg>
+      </button>
+      <h2 id="time-title">Every moment with you</h2>
+      <p class="sub" id="time-sub">Tap the heart. This is for you.</p>
+      <div class="counter" id="counter" hidden></div>
+      <p class="total" id="total" hidden></p>
+      <button class="btn" id="time-btn" type="button">Open our story</button>
+    </section>
+  </main>
+
+  <div class="story" id="story" hidden>
+
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">
+        <span class="hb" id="hero-line"></span>
+        <span class="name" id="hero-name"></span>
+      </h1>
+      <p class="hero-sub" id="hero-sub"></p>
+      <a class="scroll-cue" href="#letter"><span>Keep scrolling</span>
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </a>
+    </section>
+
+    <section class="chapter" id="letter" aria-labelledby="letter-title">
+      <div class="paper">
+        <h2 id="letter-title" class="sr-only">A letter for you</h2>
+        <p class="pull" id="pull"></p>
+        <p class="dear">My love <span id="dear-name"></span>,</p>
+        <div id="letter-body"></div>
+        <p class="sign" id="sign"></p>
+      </div>
+    </section>
+
+    <section class="chapter" id="timeline" aria-labelledby="timeline-title">
+      <h2 id="timeline-title">Our story so far</h2>
+      <ol class="tl" id="tl"></ol>
+    </section>
+
+    <section class="chapter" id="reasons" aria-labelledby="reasons-title">
+      <h2 id="reasons-title">Why I love you</h2>
+      <p class="lede">Tap a card to turn it over.</p>
+      <div class="flip-grid" id="flip-grid"></div>
+    </section>
+
+    <section class="chapter" id="openwhen" aria-labelledby="ow-title">
+      <h2 id="ow-title">Open when…</h2>
+      <p class="lede">Little letters for the moments you need me.</p>
+      <div class="ow-list" id="ow-list"></div>
+    </section>
+
+    <section class="chapter" id="scratch" aria-labelledby="scratch-title" hidden>
+      <h2 id="scratch-title"></h2>
+      <p class="lede" id="scratch-prompt"></p>
+      <div class="scratch-card" id="scratch-card">
+        <div class="scratch-prize">
+          <span class="sp-ico" id="sp-ico" aria-hidden="true"></span>
+          <p id="sp-text"></p>
+        </div>
+        <canvas id="scratch-canvas" aria-hidden="true"></canvas>
+      </div>
+      <button class="link" id="scratch-skip" type="button">Reveal it for me</button>
+    </section>
+
+    <section class="chapter" id="memories" aria-labelledby="memories-title" hidden>
+      <h2 id="memories-title">Moments I keep</h2>
+      <div class="polaroids" id="polaroids"></div>
+    </section>
+
+    <section class="chapter" id="heartbeat" aria-labelledby="hb-title" hidden>
+      <h2 id="hb-title"></h2>
+      <p class="lede" id="hb-prompt"></p>
+      <button class="hold" id="hold-btn" type="button" aria-label="Press and hold to feel my heartbeat">
+        <svg class="ring" viewBox="0 0 120 120" aria-hidden="true"><circle class="ring-bg" cx="60" cy="60" r="54"/><circle class="ring-fg" id="ring-fg" cx="60" cy="60" r="54"/></svg>
+        <svg class="hold-heart" id="hold-heart" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="hhg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9bb0"/><stop offset="1" stop-color="#c23a5c"/></linearGradient></defs><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="url(#hhg)"/></svg>
+      </button>
+      <p class="hold-msg" id="hold-msg" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="chapter" id="tilt" aria-labelledby="tilt-title" hidden>
+      <h2 id="tilt-title"></h2>
+      <p class="lede" id="tilt-prompt"></p>
+      <div class="tilt-box" id="tilt-box">
+        <canvas id="tilt-canvas" aria-hidden="true"></canvas>
+        <button class="btn tilt-start" id="tilt-start" type="button">Tap to start</button>
+      </div>
+      <p class="tilt-hint" id="tilt-hint" role="status" aria-live="polite"></p>
+      <p class="tilt-msg" id="tilt-msg" hidden></p>
+    </section>
+
+    <section class="chapter" id="promises" aria-labelledby="promises-title">
+      <h2 id="promises-title">My promises to you</h2>
+      <ul class="promise-list" id="promise-list"></ul>
+    </section>
+
+    <section class="chapter" id="question" aria-labelledby="q-title">
+      <h2 id="q-title"></h2>
+      <div class="q-area" id="q-area">
+        <button class="btn" id="yes-btn" type="button"></button>
+        <button class="btn btn-ghost" id="no-btn" type="button"></button>
+      </div>
+      <p class="q-answer" id="q-answer" role="status" aria-live="polite" hidden></p>
+    </section>
+
+    <section class="chapter finale" id="finale" aria-labelledby="finale-title">
+      <h2 id="finale-title"></h2>
+      <p class="finale-close" id="finale-close"></p>
+      <p class="langs" id="langs" aria-label="I love you in many languages"></p>
+      <div class="finale-actions">
+        <button class="btn" id="replay-btn" type="button">Shower me with love</button>
+        <button class="btn btn-ghost" id="restart-btn" type="button">Read it again from the start</button>
+      </div>
+      <p class="made" id="made"></p>
+    </section>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
